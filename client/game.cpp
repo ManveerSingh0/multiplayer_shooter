@@ -26,11 +26,10 @@ void Game::run
   }
  */
 
-
 void Game::game_loop() {
   create_window(width, height, title);
 
-  Player p(10,10,200,200);
+  Player p(10,10,100,100);
   char fps[20];
 
   while (!WindowShouldClose()) {
