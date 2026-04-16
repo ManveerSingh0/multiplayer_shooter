@@ -18,7 +18,18 @@ FetchContent_MakeAvailable(raylib)
 
 
 add_executable(main main.cpp)
+add_library(player
+  player.cpp
+  game.cpp
+)
+target_include_directories(
+  player PUBLIC
+  ${CMAKE_SOURCE_DIR}/
+) 
 
 
 
-target_link_libraries(main PRIVATE raylib)
+
+
+target_link_libraries(player PRIVATE raylib)
+target_link_libraries(main PRIVATE raylib player)
