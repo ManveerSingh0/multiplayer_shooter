@@ -2,9 +2,6 @@
 
 
 
-
-
-
 int main() {
   Game game(800,800, "It is working!");
   game.run();

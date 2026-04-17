@@ -2,9 +2,17 @@
 #include <player.h>
 #include <raylib.h>
 #include <string>
+#include <nlohmann/json.hpp>
+
+
 
 Game::Game(int width, int height, const std::string& title)
     : width{width}, height{height}, title{title} {
+
+  sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_port = htons(8080);
+  inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr);
 }
 
 Game::~Game() {
@@ -14,6 +22,18 @@ Game::~Game() {
 void Game::run
 () {
   game_loop();
+}
+
+
+void Game::talk_to_server(const Player& p) {
+  nlohmann::json j;
+  j["x"] = p.get_x();
+  j["y"] = p.get_y();
+
+  coordination = j.dump();
+
+
+  sendto(sockfd, coordination.data(), coordination.size(), 0, reinterpret_cast<sockaddr*>(&server_addr),sizeof(server_addr));  
 }
 
 
@@ -29,10 +49,14 @@ void Game::run
 void Game::game_loop() {
   create_window(width, height, title);
 
-  Player p(10,10,100,100);
+ Player p(10,10,100,100);
   char fps[20];
 
+
+
   while (!WindowShouldClose()) {
+    talk_to_server(p);
+
     snprintf(fps , sizeof(fps), "FPS: %d", GetFPS());
 
     //Moves the player IsKeyDown function by 100 speed

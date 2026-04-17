@@ -19,8 +19,8 @@ Player::~Player() {
   
 }
 
-int Player::get_x() { return player.x; }
-int Player::get_y(){return player.y;}
+int Player::get_x() const{ return player.x; }
+int Player::get_y() const{return player.y;}
 
 
 void Player::set_size(int height, int width) {
@@ -41,17 +41,17 @@ void Player::draw_player() {
 
 
 void Player::player_move() {
-     if(IsKeyDown(KEY_W)){
-       player.y -= GetFrameTime() * player_speed;
-     }
-     if(IsKeyDown(KEY_S)){
-       player.y += GetFrameTime() * player_speed;
-     }
-     if(IsKeyDown(KEY_A)){
-       player.x -= GetFrameTime() * player_speed;
-     }
-     if(IsKeyDown(KEY_D)){
-       player.x += GetFrameTime() * player_speed;
-     }
-   }
+  if(IsKeyDown(KEY_W)){
+    player.y -= GetFrameTime() * player_speed;
+  }
+  if(IsKeyDown(KEY_S)){
+    player.y += GetFrameTime() * player_speed;
+  }
+  if(IsKeyDown(KEY_A)){
+    player.x -= GetFrameTime() * player_speed;
+  }
+  if(IsKeyDown(KEY_D)){
+    player.x += GetFrameTime() * player_speed;
+  }
+}
 
