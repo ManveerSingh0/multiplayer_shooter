@@ -23,6 +23,14 @@ int Player::get_x() const{ return player.x; }
 int Player::get_y() const{return player.y;}
 
 
+void Player::set_x(int x) {
+  this->x = x;
+}
+void Player::set_y(int y) {
+  this->y = y;
+}
+
+
 void Player::set_size(int height, int width) {
   player.height = height;
   player.width = width;

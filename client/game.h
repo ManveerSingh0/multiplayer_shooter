@@ -17,14 +17,17 @@ private:
   void game_loop();
   bool create_window(int height, int width, const std::string& title);
   void game_end();
-  void talk_to_server(const Player& p);
+  void talk_to_server(Player& p);
 
 
 private:
-  int width{};
-  int height{};
-  int sockfd{};
   struct sockaddr_in server_addr{};
   std::string coordination{};
   const std::string title{};
+  int width{};
+  int height{};
+  int sockfd{};
+  int other_x{};
+  int other_y{};
+
 };
