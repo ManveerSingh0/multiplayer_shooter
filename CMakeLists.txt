@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-
 include(FetchContent)
 
 FetchContent_Declare(
@@ -16,20 +15,13 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(raylib)
 
-
-add_executable(main main.cpp)
-add_library(player
-  player.cpp
-  game.cpp
+FetchContent_Declare(
+  json
+  GIT_REPOSITORY https://github.com/nlohmann/json
+  GIT_TAG v3.12.0
 )
-target_include_directories(
-  player PUBLIC
-  ${CMAKE_SOURCE_DIR}/
-) 
 
+FetchContent_MakeAvailable(json)
 
-
-
-
-target_link_libraries(player PRIVATE raylib)
-target_link_libraries(main PRIVATE raylib player)
+add_subdirectory(client)
+add_subdirectory(server)
