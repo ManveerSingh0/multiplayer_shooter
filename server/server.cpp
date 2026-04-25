@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include <nlohmann/json.hpp>
-
+#include <sys/epoll.h>
 
 
 
@@ -45,18 +45,19 @@ int main() {
   
   std::map<std::string , sockaddr_in> unique_id_map;
 
+
+  int epoll_fd = epoll_create1(0);
+  struct epoll_event event;
+  event.events = EPOLLIN;
+  event.data.fd = sockfd;
+
+  epoll_ctl(epoll_fd, EPOLL_CTL_ADD, sockfd, &event);
+  
+
   for (;;) {
     // we receive the data first;
     int n = recvfrom(sockfd, game_buff, size, 0,reinterpret_cast<sockaddr*>(&client_sockaddress), &addrlen);
 
-    // convert it to unique_id 
-    // using function is better to convert to unique_id
-
-    // game_buff[n] = '\0';
-
-    // if (n > 0) {
-    //   std::cout << game_buff << '\n';
-    // }
 
     std::string address_to_unique =
       std::string(inet_ntoa(client_sockaddress.sin_addr)) + ":" +
@@ -70,7 +71,5 @@ int main() {
 	sendto(sockfd, game_buff, n , 0, reinterpret_cast<sockaddr*>(&addr), sizeof(addr));
       }
     }
-
-
   }
 }
