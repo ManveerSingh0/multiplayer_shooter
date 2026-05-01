@@ -7,23 +7,18 @@
 #include <sys/epoll.h>
 
 
+// Signature: void -> int
+// purpose: creates udp server and binds the address to file descriptor.
+//          returns a file descriptor created on success , -1 on failure; 
 
+//this is the stub 
+// int init_udp_server() {
+//   return 0;
+// }
 
-// this function will convert given ip address to unique_id
-// Signature: sockaddr -> bool
-// interp. sockaddr is a struct , which holds ip address, family , port number.
-//         this function will convert given ip address to unique id
-
-/*
-  bool unique_id_converter(const sockaddr* addr, n){
-    return false;
-  }
-*/
-
-
-
-
-int main() {
+//Example 1: on success  , the result should  be >= 0;
+//Example 2: on failure  , the result should  be -1;
+int init_udp_server() {
   int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
   sockaddr_in addr{};
   addr.sin_family = AF_INET;
@@ -34,6 +29,14 @@ int main() {
     std::cout << "bind error\n";
     return 1;
   }
+  return sockfd;
+}
+
+
+
+int main() {
+  int sockfd = init_udp_server();
+
 
   char game_buff[1024];
   struct sockaddr_in client_sockaddress{};
