@@ -2,6 +2,7 @@ add_executable(main main.cpp)
 add_library(
   game_engine
   game.cpp
+  player.cpp
 )
 
 
