@@ -3,5 +3,5 @@
 
 
 int main() {
-  //  Game game("Multiplayer shooter" , {800,800});
+  Game game("Multiplayer shooter" , {800,800});
 }
