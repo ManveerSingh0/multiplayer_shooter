@@ -7,6 +7,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
 #include <player.hpp>
+#include <cstdint>
 
 
 
@@ -14,7 +15,7 @@
 class Game {
 public:
   //This constructor will set the basic of SFML window (name , size) 
-  Game(std::string bwindow_name,  sf::Vector2<uint> size);
+  Game(std::string bwindow_name,  sf::Vector2<uint32_t> size);
   ~Game();
   void main_loop();
 

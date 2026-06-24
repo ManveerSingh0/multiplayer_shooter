@@ -3,6 +3,6 @@
 #include <iostream>
 
 int main() {
-  Game game("Multiplayer shooter" , {800,800});
+  Game game("still working" , {800,800});
   game.main_loop();
 }

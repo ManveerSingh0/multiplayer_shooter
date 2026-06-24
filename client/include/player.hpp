@@ -13,7 +13,7 @@ public:
   void move(sf::Time timep);
 
 private:
-  float player_speed{200.0};
+  float player_speed{20.0};
 
 
   // Virtual functions private

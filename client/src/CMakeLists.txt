@@ -3,6 +3,16 @@ add_library(
   game_engine
   game.cpp
   player.cpp
+  map.cpp
+)
+
+
+add_custom_command(
+  TARGET main POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+      "${CMAKE_SOURCE_DIR}/assets/knight.png" 
+      "$<TARGET_FILE_DIR:main>/bin/knight.png"
+  COMMENT "Copying knight.png to the binary directory"
 )
 
 
