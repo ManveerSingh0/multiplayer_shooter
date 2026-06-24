@@ -32,8 +32,6 @@ void Game::update() {
 
 
 
-
-
 void Game::game_render() {
   window.clear();
   window.draw(m_player);
