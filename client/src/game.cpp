@@ -1,6 +1,7 @@
 #include <SFML/System/Time.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <game.hpp>
-#include <iostream>
+
 
 
 Game::Game(std::string window_name, const sf::Vector2<uint> size){
@@ -45,6 +46,11 @@ void Game::process_events() {
   while (const std::optional event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) {
 	window.close();
+      }
+      if (auto const *key_pressed = event->getIf<sf::Event::KeyPressed>()) {
+        if (key_pressed->scancode == sf::Keyboard::Scancode::Escape) {
+	  window.close(); 
+        }
       }
     }  
 }
