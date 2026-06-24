@@ -20,10 +20,14 @@ void Game::main_loop() {
   while (window.isOpen()) {
     elapsed_time = clock.restart(); 
 
-
     process_events();
+    this->update();
     game_render();
   }
+}
+
+void Game::update() {
+  m_player.move(elapsed_time);
 }
 
 
@@ -40,7 +44,7 @@ void Game::game_render() {
 
 
 void Game::process_events() {
-    while (const std::optional event = window.pollEvent()) {
+  while (const std::optional event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) {
 	window.close();
       }

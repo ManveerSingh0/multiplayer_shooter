@@ -9,7 +9,14 @@ public:
   Player();
 
 
+public:
+  void move(sf::Time timep);
 
+private:
+  float player_speed{200.0};
+
+
+  // Virtual functions private
 private:
   virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

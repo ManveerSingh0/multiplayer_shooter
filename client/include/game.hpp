@@ -21,7 +21,7 @@ public:
 private:
   void process_events();
   void game_render();
-  
+  void update();
 
 private:
   Player m_player;
