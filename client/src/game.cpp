@@ -12,25 +12,14 @@ Game::~Game() { window.close(); }
 //    Main Loop   //
 ////////////////////
 void Game::main_loop() {
-
-  sf::Texture txt;
-  if(!txt.loadFromFile("bin/knight.png")){
-    return;
-  }
-
-  sf::Sprite sp(txt);
-  
-  
   while (window.isOpen()) {
     elapsed_time = clock.restart();
+
 
     process_events();
 
 
-
     this->update();
-    window.clear();
-    window.draw(sp);
     game_render();
   }
 }
@@ -41,8 +30,7 @@ void Game::update() { m_player.move(elapsed_time); }
 
 void Game::game_render() {
 
-
-  
+  window.clear();
   window.draw(m_player);
   window.display();
 }
