@@ -24,16 +24,18 @@ void Game::main_loop() {
   }
 }
 
+
+
 void Game::update() { m_player.move(elapsed_time); }
 
 
 
 void Game::game_render() {
-
   window.clear();
   window.draw(m_player);
   window.display();
 }
+
 
 void Game::process_events() {
   while (const std::optional event = window.pollEvent()) {
