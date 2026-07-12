@@ -16,6 +16,15 @@ add_custom_command(
 )
 
 
+add_custom_command(
+  TARGET main POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different 
+      "${CMAKE_SOURCE_DIR}/assets/basic_pack" 
+      "$<TARGET_FILE_DIR:main>/bin/assets/basic_pack"
+  COMMENT "copying basic_pack directory to bin/assets folder"
+)
+
+
 target_link_libraries(game_engine PUBLIC SFML::Graphics)
 target_include_directories(game_engine PUBLIC "${CMAKE_SOURCE_DIR}/client/include")
 
